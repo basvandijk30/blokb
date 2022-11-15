@@ -1,0 +1,143 @@
+1.29) Getalverzamelingen. Bepaal tot welke getalverzameling onderstaande
+getallen behoren:
+
+(a) 2
+Natuurlijke getallen (N)     
+
+(b) −2
+Gehele getallen (Z)
+
+(c) 1/2
+Rationale getallen (Q)
+
+(d) √2
+Reële getallen (R)
+
+(e) 20/2
+Rationale getallen (Q)
+
+(f) 10/√25
+Rationale getallen (Q)
+
+(g) −0.2
+Rationale getallen (Q)
+
+(h) −1/√2
+Reële getallen (R)
+
+
+
+1.30) Floor (⌊ ⌋) en ceiling (⌈ ⌉). Bepaal:
+
+(a) ⌊ 21 / 4 ⌋ = 5
+
+(b) ⌈ -21 / 4 ⌉ = -5
+
+(c) ⌈ 1 / 5 ⌉ = 1
+
+(d) ⌊ 1 / -5 ⌋ = -1
+
+(e) ⌊ 15 / -5⌋ = -3
+
+(f) ⌈ 10 / 5 ⌉ = 2
+
+
+
+1.31) Floor (⌊ ⌋) en ceiling (⌈ ⌉). Bepaal:
+
+(a) ⌈ 2.6 ⌉ = 3 
+
+(b) ⌊ 6.2 ⌋ = 6 
+
+(c) ⌊ -1.4 ⌋ = -2
+
+(d) ⌈ -5.6 ⌉ = -5
+
+(e) ⌊ -2/7 ⌋ = -1
+
+(f) ⌈ 5 + 6/7 ⌉ = 6
+
+
+
+1.32) Ontbinden in priemfactoren. Ontbind onderstaande getallen in priem-
+factoren:
+
+(a) 180 = 2, 2, 3, 3, 5
+
+(b) 43 = 43
+
+(c) 81 = 3, 3, 3, 3
+
+(d) 31 = 31
+
+(e) 30 = 2, 3, 5
+
+(f) 73 = 73
+
+(g) 64 = 2, 2, 2, 2, 2, 2
+
+(h) 19 = 19
+
+
+
+1.33) Delers van 71400. Gegeven is dat 71400 = 23 × 3 × 52 × 7 × 17.
+
+(a) Wat is het aantal delers van 71400?
+    priemfactoren = 2, 2, 2, 3, 5, 5, 7, 17
+    |D(71400)|= 4 × 2 x 3 x 2 x 2 = 96
+
+(b) i.    84 is een deler van 71400 
+    ii.   85 is een deler van 71400
+    iii.  86 is geen deler van 71400
+    iv.  150 is een deler van 71400
+    v.   200 is een deler van 71400
+    vi.  250 is geen deler van 71400
+
+
+
+1.34) Grootste gemene deler en kleinste gemene veelvoud. Gegeven is
+dat 90 = 2 ×32 ×5 en 72 = 23 ×32. Bepaal:
+
+(a) gcd(90, 72) = 18
+
+(b) lcm(90, 72) = 360
+
+
+
+1.35) Grootste gemene deler. Bepaal:
+
+(a) gcd(30, 18) = 6
+
+(b) gcd(18, 36) = 9
+
+(c) gcd(18, 45) = 9
+
+(d) gcd(36, 45) = 9 
+
+(e) gcd(90, 135) = 45
+
+(f) gcd(7, 7) = 7
+
+(g) gcd(123, 23) = 1
+
+(h) gcd(1250, 52) = 2
+
+(i) gcd(321, 246) = 3
+
+(j) gcd(124, 48) = 4
+
+
+
+1.36) Kleinste gemene veelvoud. Bepaal:
+
+(a) lcm(7, 5) = 35
+
+(b) lcm(3, 9) = 9
+
+(c) lcm(8, 10) = 40
+
+(d) lcm(12, 9) = 36
+
+(e) lcm(12, 36) = 36
+
+(f) lcm(12, 18) = 36
