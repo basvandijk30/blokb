@@ -49,7 +49,11 @@ def floor(real: float) -> int:
 
 def ceil(real: float) -> int:
     """ Bepaal het kleinste gehele getal (int), groter dan of gelijk aan real (float). """
-    return int((real // 1) + 1) if real % 1 != 0 else int(real // 1)
+    if real % 1 != 0:
+        return int((real // 1) + 1)
+    return int(real // 1)
+    # Oneliner:
+    # return int((real // 1) + 1) if real % 1 != 0 else int(real // 1)
 
 
 def div(n: int) -> list:
@@ -64,9 +68,13 @@ def div(n: int) -> list:
     Returns:
         list: Een gesorteerde lijst met alle delers van `n`.
     """
-    # divisors = [num for num in range(1, n + 1) if n % num == 0]
-    # return sorted(divisors)
-    return sorted([num for num in range(1, n + 1) if n % num == 0])
+    divisors = []
+    for num in range(1, n + 1):
+        if n % num == 0:
+            divisors.append(num)
+    return sorted(divisors)
+    # Oneliner:
+    # return sorted([num for num in range(1, n + 1) if n % num == 0])
 
 
 def is_prime(n: int) -> bool:
@@ -82,13 +90,14 @@ def is_prime(n: int) -> bool:
     Returns:
         bool: True als het getal een priemgetal is, anders False.
     """
-    # if n == 1:
-    #         return False
-    # for num in range(2, int(n ** 0.5) + 1):
-    #     if n % num == 0:
-    #         return False
-    # return True
-    return False if n == 1 else len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0 
+    if n == 1:
+            return False
+    for num in range(2, int(n ** 0.5) + 1):
+        if n % num == 0:
+            return False
+    return True
+    # Oneliner:
+    # return False if n == 1 else len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0 
 
 
 def primes(num):
@@ -103,9 +112,13 @@ def primes(num):
     Returns:
         list: Een gesorteerde lijst met alle priemgetallen kleiner dan `num`.
     """
-    # primelist = [n for n in range(2, num) if is_prime(n)]
-    #return sorted([n for n in range(2, num) if is_prime(n)])
-    return sorted([n for n in range(2, num) if n != 1 and len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0])
+    primelist = []
+    for n in range(2, num):
+        if is_prime(n):
+            primelist.append(n)
+    return sorted(primelist)
+    # Oneliner: 
+    # return sorted([n for n in range(2, num) if n != 1 and len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0])
 
 
 def primefactors(n):
@@ -124,9 +137,12 @@ def primefactors(n):
         return []
     for i in range(2, n + 1):
         while n % i == 0:
-            n //= i
+            n /= i
             factors.append(i)
     return sorted(factors)
+    # Oneliner-ish (helaas niet van mij (https://gist.github.com/Ending2015a/aa6ccb6ed4426514c659727d73d48ac0)):
+    # pf = lambda n, x: [x] + pf(n/x,x) if n%x==0 else pf(n,x+1) if x<n else []
+    # return pf(n, 2)
 
 
 def gcd(a, b):
@@ -146,12 +162,13 @@ def gcd(a, b):
     Returns:
         int: De grootste grootste gemene deler.
     """
-    # Euclides algoritme
 
-    # if b == 0:
-    #     return a
-    # return gcd(b, a % b)
-    return a if b == 0 else gcd(b, a % b)
+    # Euclides algoritme
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+    # Oneliner: 
+    # return a if b == 0 else gcd(b, a % b)
 
 
 def lcm(a, b):
@@ -206,6 +223,8 @@ def add_frac(n1, d1, n2, d2):
     # vereenvoudig de breuk en return
     g = gcd(n, d)
     return (n // g, d // g)
+    # Oneliner (cheated want gcd()): 
+    # return ((n1*d2 + d1*n2) // gcd(n1*d2 + d1*n2, d1*d2), d1*d2 // gcd(n1*d2 + d1*n2, d1*d2))
 
 
 """

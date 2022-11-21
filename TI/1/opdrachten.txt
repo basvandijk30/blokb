@@ -1,0 +1,27 @@
+1.1) Embedded software om je heen.
+- Digitale wekker
+- Playstation
+- JBL speaker
+- Ventilator
+
+1.2)
+
+-3.3V, 1kOhm, Uled = 1.8V
+U = I / R, 1.8 / 1000 = 1.8 mA stroom over de gehele schakeling
+3.3 - 1.8 = 1.5V spanning op de weerstand
+Als je het LEDje andersom aansluit gaat hij niet branden.
+
+
+-5V, 1kOhm
+Het LEDje gaat feller branden.
+Er staat nu 5 - 1.8 = 3.2V
+Iohm = 3.2 / 1000 = 3.2 mA
+Iled = Iohm want stroom is in serieschakeling gelijk
+
+
+-3.3V, 100 Ohm
+Lampje gaat minder fel branden.
+Iohm = 3.3 / 100 = 0.033 A
+P = U  * I = 3.3 * 0.01 A = 0.033 W
+per dag = 0.033W * 24h = 0.792Wh
+per jaar = 0.792 * 365d = 289.08Wh
