@@ -100,7 +100,7 @@ def is_prime(n: int) -> bool:
     # return False if n == 1 else len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0 
 
 
-def primes(num):
+def primes(num: int) -> list[int]:
     """
     Bepaal alle priemgetallen kleiner dan een bepaald geheel getal.
 
@@ -121,7 +121,7 @@ def primes(num):
     # return sorted([n for n in range(2, num) if n != 1 and len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0])
 
 
-def primefactors(n):
+def primefactors(n: int) -> list[int]:
     """
     Bepaal de verzameling van priemfactoren van n.
 
@@ -145,7 +145,7 @@ def primefactors(n):
     # return pf(n, 2)
 
 
-def gcd(a, b):
+def gcd(a: int, b: int):
     """
     Bepaal de grootste grootste gemene deler (ook wel 'greatest common divisor', gcd) van twee natuurlijke getallen.
 
@@ -171,7 +171,7 @@ def gcd(a, b):
     # return a if b == 0 else gcd(b, a % b)
 
 
-def lcm(a, b):
+def lcm(a: int, b: int) -> int:
     """
     Bepaal het kleinste gemene veelvoud, kgv (ook wel 'least common multiple', lcm) van twee natuurlijke getallen.
 
@@ -185,7 +185,7 @@ def lcm(a, b):
     return (a * b) // gcd(a, b)
 
 
-def add_frac(n1, d1, n2, d2):
+def add_frac(n1: int, d1: int, n2: int, d2: int) -> tuple[int]:
     """Sommeer twee breuken als breuk. Vereenvoudig de breuk zover als mogelijk.
 
     Args:
