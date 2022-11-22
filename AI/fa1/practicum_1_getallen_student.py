@@ -39,7 +39,7 @@ def is_even(n: int) -> bool:
     Returns:
         bool: True als even, False als oneven.
     """
-    return n % 2 == 0
+    return not n % 2
 
 
 def floor(real: float) -> int:
