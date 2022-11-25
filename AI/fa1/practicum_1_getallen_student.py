@@ -118,7 +118,7 @@ def primes(num: int) -> list[int]:
             primelist.append(n)
     return sorted(primelist)
     # Oneliner: 
-    # return sorted([n for n in range(2, num) if n != 1 and len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0])
+    # return sorted([n for n in range(2, num) if len([num for num in range(2, int(n ** 0.5) + 1) if n % num == 0]) == 0])
 
 
 def primefactors(n: int) -> list[int]:

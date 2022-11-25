@@ -1,0 +1,4 @@
+1) Binaire waarde:
+    0b10101011
+    Van rechts naar links:
+    1 + 2 + 0 + 8 + 0 + 32 + 0 + 128 = 171
