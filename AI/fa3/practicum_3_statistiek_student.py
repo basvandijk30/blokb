@@ -87,19 +87,18 @@ def q1(lst):
     Returns:
         float: Het eerste kwartiel Q1 van de gegeven getallen.
     """
-    # copy = sorted(lst)
-    # fulllength = len(lst)
-    # mid = fulllength // 2 
-    # half = copy[:mid]
-    # halflength = len(half)
+    copy = sorted(lst)
+    fulllength = len(lst)
+    mid = fulllength // 2 
+    half = copy[:mid]
+    halflength = len(half)
 
-    # if halflength % 2 == 0:
-    #     return mean([half[len(half) // 2 - 1], half[len(half) // 2]])
-    # return half[len(half) // 2]
-    # even afmaken vv
-    return float(((lst[len(lst) // 4 - 1] + lst[len(lst) // 4]) // 2, lst[len(lst) // 2])[(len(lst) // 2) % 2])
-
-    return float((sum([sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2 - 1], sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2]]) / 2, sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2])[len(sorted(lst)[:len(lst) // 2]) % 2])
+    if halflength % 2 == 0:
+        return float(mean([half[len(half) // 2 - 1], half[len(half) // 2]]))
+    return float(half[len(half) // 2])
+    
+    # Oneliner:
+    # return float((sum([sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2 - 1], sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2]]) / 2, sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2])[len(sorted(lst)[:len(lst) // 2]) % 2])
 
 
 def q3(lst):
