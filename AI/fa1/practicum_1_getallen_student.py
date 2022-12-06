@@ -49,6 +49,7 @@ def floor(real: float) -> int:
 
 def ceil(real: float) -> int:
     """ Bepaal het kleinste gehele getal (int), groter dan of gelijk aan real (float). """
+    # als real geen geheel getal is:
     if real % 1 != 0:
         return int((real // 1) + 1)
     return int(real // 1)
@@ -92,6 +93,7 @@ def is_prime(n: int) -> bool:
     """
     if n == 1:
             return False
+    # n = a * b, n = n**0.5 * n**0.5, dus a !> n**0.5 en b !> n**0.5
     for num in range(2, int(n ** 0.5) + 1):
         if n % num == 0:
             return False

@@ -1,77 +1,68 @@
-import math
+import machine
+from machine import Pin
 import time
 
-import machine
-import neopixel
+led_pins = [
+    Pin(0, Pin.OUT),
+    Pin(1, Pin.OUT),
+    Pin(2, Pin.OUT),
+    Pin(3, Pin.OUT),
+    Pin(4, Pin.OUT)
+]
 
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-OFF = (0, 0, 0)
-
-
-def looplight(np, delay):
-    while True:
-        for i in range(8):
-            np[i] = RED
-            np.write()
-            time.sleep(delay)
-        for i in range(8):
-            np[i] = OFF
-        np.write()
-        time.sleep(delay)
+trigger_pin = Pin(14, Pin.OUT)
+echo_pin = Pin(15, Pin.IN)
 
 
-def thingy(np, delay):
+def measure_distance():
     """
-    1: 0 t/m 7 aan en uit
-    2: als 7: desc
-    3: als 0: asc
+        Meet de afstand met de SR04
     """
-    rev = 1
-    x, _ = 0, 1
-    while True:
-        for i in range(7):
-            np[i * rev - x] = GREEN
-            np.write()
-            time.sleep(delay)
-            np[i * rev - x] = OFF
-            np.write()
-            time.sleep(delay)
-        rev = -rev
-        x, _ = _, x
+    trigger_pin.value(0)
+    time.sleep_us(5)
+
+    trigger_pin.value(1)
+    time.sleep_us(10)
+    trigger_pin.value(0)
+
+    pulse = machine.time_pulse_us(echo_pin, 1, 1_000_000)
+
+    return pulse / 58
 
 
-def rainbow(np, l):
-
-    for g in range(256):
-        np[l] = (255, g, 0)
-        np.write()
-        time.sleep(0.01)
-    for r in reversed(range(256)):
-        np[l] = (r, 255, 0)
-        np.write()
-        time.sleep(0.01)
-    for b in range(256):
-        np[l] = (0, 255, b)
-        np.write()
-        time.sleep(0.01)
-    for g in reversed(range(256)):
-        np[l] = (0, g, 255)
-        np.write()
-        time.sleep(0.01)
-    for r in range(256):
-        np[l] = (r, 0, 255)
-        np.write()
-        time.sleep(0.01)
-    for b in reversed(range(256)):
-        np[l] = (255, 0, b)
-        np.write()
-        time.sleep(0.01)
+def display_distance(distance):
+    """
+        Laat de afstand d.m.v. de leds zien.
+        1 led =  10 cm
+        2 leds = 15 cm
+        3 leds = 20 cm
+        4 leds = 25 cm
+        5 leds = 30 cm
+    """
+    for i in led_pins:
+        i.value(0)
+    if distance < 10:
+        for i in led_pins:
+            i.value(0)
+    elif 10 < distance < 15:
+        led_pins[0].value(1)
+    elif 15 < distance < 20:
+        led_pins[0].value(1)
+        led_pins[1].value(1)
+    elif 20 < distance < 25:
+        for i in range(3):
+            led_pins[i].value(1)
+    elif 25 < distance < 30:
+        for i in range(4):
+            led_pins[i].value(1)
+    else:
+        for i in range(5):
+            led_pins[i].value(1)
 
 
 if __name__ == "__main__":
-    np = neopixel.NeoPixel(machine.Pin(13), 8)
-    # looplight(np, 0.25)
+
     while True:
-        rainbow(np, 7)
+        distance = measure_distance()
+        display_distance(distance)
+        time.sleep_ms(100)

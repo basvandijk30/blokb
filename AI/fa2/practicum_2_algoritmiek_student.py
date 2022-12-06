@@ -111,15 +111,16 @@ def my_sort(lst):
     srtd = False
 
     for _ in lst:
+        # srtd wordt True als lijst gesorteerd is.
         if not srtd:
-            swap = 0
+            swap = 0  # Tel de swaps, als er 0 swaps gebeurd zijn is de lijst gesorteerd.
             for i, em in enumerate(lst_sorted):
-                # If element to the right is bigger than current element,
-                # and current element is not end of list:
-                #   Swap current element with element to the right.
+                # Als het element rechts groter is dan het huidige element
+                # en het huidige element is niet het einde van de lijst:
+                #     Wissel huidige element met element rechts ervan.
                 if i < len(lst_sorted) -1 and em > lst_sorted[i + 1]:
                     lst_sorted[i], lst_sorted[i + 1] = lst_sorted[i + 1], lst_sorted[i]
-                    swap += 1  # Count swaps. If no swaps occur, list is sorted.
+                    swap += 1 
             else:
                 if swap == 0:
                     srtd = True
@@ -139,11 +140,15 @@ def linear_search_recursive(lst, target):
     Returns:
         bool: Of het element in de lijst voorkomt.
     """
-    srch = lst[:]
-    if len(srch) == 0:
+    srch = lst[:]  # Maak een kopie van de lijst, zodat originele lst niet aangepast wordt. 
+    
+    # Als er geen elementen in de lijst zitten, is het target element niet gevonden in de lijst.
+    if len(srch) == 1:
         return False
+    # Als het eerste element de target is, dan is de target gevonden.
     elif srch[0] == target:
         return True
+    # Als het eerste element niet de target is, dan weghalen en recursief in de functie stoppen.
     return linear_search_recursive(srch[1:], target)
 
 
@@ -161,17 +166,23 @@ def binary_search_recursive(lst, target):
     Returns:
         bool: Of het element in de lijst voorkomt.
     """
-    srch = lst[:]
+    srch = lst[:]  # kopie van lijst maken
+    
+    # Als er nog maar 1 element over is, checken of dat de target is.
     if len(srch) == 1:
         return True if srch[0] == target else False
         
+    # deel de lijst in twee
     midindex = len(srch) // 2
     mid = srch[midindex]
 
+    # bepaal in welk van de twee delen de target zich zou moeten bevinden. 
     if mid == target:
         return True
     elif mid > target:
+        # Linker helft van de lijst 
         return binary_search_recursive(srch[:midindex], target)
+    # Rechter helft van de lijst
     return binary_search_recursive(srch[midindex:], target)
 
 

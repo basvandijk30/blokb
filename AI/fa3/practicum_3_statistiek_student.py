@@ -29,7 +29,7 @@ klas = "TICT-ICT-V10"
 studentnummer = 1832998
 
 
-def mean(lst):
+def mean(lst: list[int]) -> float:
     """
     Bepaal het gemiddelde van een lijst getallen.
 
@@ -42,7 +42,7 @@ def mean(lst):
     return sum(lst) / len(lst) 
 
 
-def rnge(lst):
+def rnge(lst: list[int]) -> int:
     """
     Bepaal het bereik van een lijst getallen.
 
@@ -55,7 +55,7 @@ def rnge(lst):
     return max(lst) - min(lst)
 
 
-def median(lst):
+def median(lst: list[int]) -> float:
     """
     Bepaal de mediaan van een lijst getallen.
 
@@ -65,17 +65,20 @@ def median(lst):
     Returns:
         float: De mediaan van de gegeven getallen.
     """
-    copy = sorted(lst)
-    length = len(copy)
+    copy = sorted(lst)  # maak een gesorteerde kopie van de lijst
+    length = len(copy)  # maak een variabele van de lengte zodat je len() maar 1x hoeft te callen
     mid = length // 2
+
     if length % 2 == 0:
+        # Als de lengte van de lijst een even aantal is, mean van middelste twee getallen returnen. 
         return (copy[mid - 1] + copy[mid]) / 2
+    # Anders het middelste getal van de lijst returnen
     return float(copy[mid])
     # Oneliner:
     # return ((sorted(lst)[len(lst) // 2 - 1] + sorted(lst)[len(lst) // 2]) / 2, float(sorted(lst)[len(lst) // 2]))[len(lst) % 2]
 
 
-def q1(lst):
+def q1(lst: list[int]) -> float:
     """
     Bepaal het eerste kwartiel Q1 van een lijst getallen.
 
@@ -87,21 +90,24 @@ def q1(lst):
     Returns:
         float: Het eerste kwartiel Q1 van de gegeven getallen.
     """
-    copy = sorted(lst)
-    fulllength = len(lst)
-    mid = fulllength // 2 
-    half = copy[:mid]
+    # Gesorteerde kopie maken en de eerste helft pakken, want daar zit Q1 per definitie in.
+    half = sorted(lst)[:len(lst) // 2] 
+
+    # maak een variabele van de lengte zodat je len() maar 1x hoeft te callen.
     halflength = len(half)
+    halfmid = halflength // 2
 
     if halflength % 2 == 0:
-        return float(mean([half[len(half) // 2 - 1], half[len(half) // 2]]))
-    return float(half[len(half) // 2])
+        # Als de lengte van de halve lijst een even aantal is, mean van de middelste twee getallen returnen.
+        return float(mean([half[halfmid - 1], half[halfmid]]))
+    # Anders het middelste getal van de halve lijst returnen.
+    return float(half[halfmid])
     
     # Oneliner:
     # return float((sum([sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2 - 1], sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2]]) / 2, sorted(lst)[:len(lst) // 2][len(sorted(lst)[:len(lst) // 2]) // 2])[len(sorted(lst)[:len(lst) // 2]) % 2])
 
 
-def q3(lst):
+def q3(lst: list[int]) -> float:
     """
     Bepaal het derde kwartiel Q3 van een lijst getallen.
 
@@ -111,7 +117,19 @@ def q3(lst):
     Returns:
         float: Het derde kwartiel Q3 van de gegeven getallen.
     """
-    return
+    length = len(lst)  # variabele maken van lengte zodat je len() maar 1x hoeft te callen 
+
+    # als lengte van lijst oneven is, 1 bij optellen zodat middelste getal niet in halve lijst komt
+    half = sorted(lst)[length // 2 + length % 2:]  
+
+    halflength = len(half)
+    halfmid = halflength // 2
+
+    if halflength % 2 == 0:
+        # Als er twee getallen in het midden van de lijst zitten, mean van die twee returnen.
+        return float(mean([half[halfmid], half[halfmid - 1]]))
+    # Als er een getal in het midden zit, dat getal returnen.
+    return float(half[halfmid])
 
 
 def var(lst):
@@ -124,7 +142,16 @@ def var(lst):
     Returns:
         float: De variantie van de gegeven getallen.
     """
-    return
+    # stap 1: neem het gemiddelde van de lijst
+    gem = mean(lst)
+    # stap 2: bepaal de afstand van het gemiddelde voor elke waarde in de lijst
+    afwijkingen = [x - gem for x in lst]  # list comprehensions zijn cool
+    # stap 3: alle afwijkingen kwadrateren om alles positief te maken 
+    kwadraten = [a ** 2 for a in afwijkingen]
+    # stap 4: pak de mean van de kwadraten.
+    return float(sum(kwadraten) / (len(lst)))
+    # Oneliner:
+    #return float(sum([(x - sum(lst) / len(lst)) ** 2 for x in lst]) / len(lst))
 
 
 def std(lst):
@@ -137,7 +164,8 @@ def std(lst):
     Returns:
         float: De standaardafwijking van de gegeven getallen.
     """
-    return
+    # op internet gevonden dat wortel van variantie de standaardafwijking is
+    return var(lst) ** 0.5
 
 
 def freq(lst):
@@ -158,8 +186,9 @@ def freq(lst):
         >> freq([1, 1, 2, 3, 2, 1])
         {1: 3, 2: 2, 3: 1}
     """
-    freqs = dict()
-    return freqs
+    # voor elk element in de lijst tellen hoevaak die voorkomt met count()
+    # dictionary comprehension om in dict te zetten.
+    return {k:lst.count(k) for k in lst}
 
 
 def modes(lst):
@@ -182,8 +211,15 @@ def modes(lst):
         [1]
     """
     modi = []
+    freqs = freq(lst)
+    m = max(freqs.values())  # pak de eerste hoogste waarde
+    for k, v in freqs.items():
+        # als er meer elementen met dezelfde frequentie zijn: ook toevoegen
+        if v == m:
+            modi.append(k)
     return sorted(modi)
-
+    # Oneliner:
+    # return sorted([k for k, v in freq(lst).items() if v == max(freq(lst).values())])
 
 """
 ==========================[ HU TESTRAAMWERK ]================================

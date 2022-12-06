@@ -39,7 +39,7 @@ with serial.Serial(port=pico_port, baudrate=115200, bytesize=8, parity='N', stop
 
     try:
         # Request user input
-        commands = ['off', 'on', 'exit']
+        commands = ['off', 'on', 'temp', 'kitt', 'exit']
         while True:
             choice = input("Command? [" + ", ".join(commands) + "] ")
 
@@ -59,6 +59,11 @@ with serial.Serial(port=pico_port, baudrate=115200, bytesize=8, parity='N', stop
                 print("[PICO] " + pico_output)
             elif choice == 'temp':
                 data = "2\r"
+                serial_port.write(data.encode())
+                pico_output = read_serial(serial_port).replace('\r\n', ' ')
+                print("[PICO] " + pico_output)
+            elif choice == 'kitt':
+                data = '3\r'
                 serial_port.write(data.encode())
                 pico_output = read_serial(serial_port).replace('\r\n', ' ')
                 print("[PICO] " + pico_output)
